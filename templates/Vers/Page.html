@@ -1,0 +1,27 @@
+{% extends 'Vers/Base.html' %}
+{% load static %}
+{% block title %} Main Page {% endblock title %}
+{% block content %}
+    <div class="" id="Store">
+        <div class="container">
+            <div class="row">
+                {% for i in products %}
+                <div class="card col-4 m-3" style="width: 18rem;">
+                    <img class="card-img-top" src="/media/{{ i.image }}" height="350px" width="200px" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i.name }}</h5>
+                        <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Maecenas elit nibh, porta at fermentum vel, porta id turpis.
+                                Maecenas congue tempus tortor id pellentesque.
+                                Vestibulum semper odio a erat tristique euismod ut sit amet urna.
+                                In tempus nisi sit amet.
+                        </p>
+                        <a href="look/{{i.slug}}" class="btn btn-primary">Look</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="px-3">
+        <a class="navbar-brand" href="/">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAAsTAAALEwEAmpwYAAADVUlEQVR4nO2ZzWtUZxjFfyZGMyaTdEhikybGSaaiVRFKoGA/QlwI6kZFdFOoaOnHogsFpYhm6demgh+ghZZCNqVddVM3WsExW3EjzN4/wYXLI+fOjU7GmcmYznfeAweGe9/7POc8933vfd47EBAQEBAQsObxBHgJPAf+Be4B88A3wBywDehvoyolY81zsQd7+TX29jz2mi28QFXyFfACeArcBxaAX4BLwBngO+A4cBCYBWaA6ZhpIFXAZJHgwnPpgutm4lgH49jfA2fjnDdiDfdjTS9ijdX6eYPowPUJ9PMo+nYYHfkAzSbRJ73owx7Us67qoE2ntVqztduDvdiTvdlj2QJ80Y9OD+cH/TmN/s4s58IUujOJroyjC2Pop83o5BA6mkIHBtG+JNrbj/Yk0I5eNLUxL8Qc7EZ9XW9ZWFD/LjznsUvXOYZjOaZjO4dzOadzW4O1XJ3Ia7PGYt32Yk/2Zo+lCvCwuIobu9DuBDqWyif4Lf1u4FaltVqztduDvZSYKQ8ows6VplayG+1MoP0D6NQwmv8I3d3aPKPObQ3WYk3WZo1VLBN7LYloQI7tesS0bjGuHxjSl/QpRXfZgK7wWLzmPu9HhwbR1/H0vDiWXzKegjcn0e1J9Hsa/TGF/srk6d8+5nMe47GXx/PXOoZjOaZjO4dzlbmrEa3Vmn9kKPJgL/ZUauqXLUApPmRatxnXOUZ0gkF9xiaNsr5pDzvntgZrOc9IpO2/2Gwp/u8C5MrwGdv0D2ndY0LXGI3EnCKlwwzoK/q0i159zAZtoUdjrNcA3UrS9XZp0RUd8zmP8djd9EbXOoZjOaZjO4dzOef76qxbAXJtwpYowKckyk7pGRKtUQA6n2WRbZQI3U0tYwPNP65UgEqIAiy9g6upZqU4FQrQLF0rIhSAGs6A1azPOt+YhiXK1nh9tl0Bao1QAGp4YxYb+DpqFrMrTic6n5ULkGuBvr1j9wK5digAnc/m7wVoHpu+F6g1GqZLoQCEGaCwBDLhGaDwEMyEt4DCa5DQByg0QqydTnBxtR8Y6oyG6crWY3PRbroUWmFCK6zQCmdCK6zQCmdCK6zQChNaYa2lVrjjG6HFFvheX29mi7wu2yuspT9Esi2whwkICAgICKAF8BowsOkv4yq1qQAAAABJRU5ErkJggg==">
+        </a>
+    </div>
+    <div class="dropdown">
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Categories
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                        {% for c in categories %}
+                        <li><a class="dropdown-item" href="/{{ c.slug }}">{{ c }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="mx-auto dropdown">
+        <div class="collapse navbar-collapse" id="LoginDropDown">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFOklEQVR4nO2ZaYhVZRjHf+PUpFM5jk5mha0f0oRJzEyzBUtsl4g22oiiDxG20KJBhU5KCyGCGllESSsFBWVqaovpRNEquUwpbVjiNpVm5ejMjSf+Bx4O77n3nLlnnDvhH164912ed3n258B+/L/QF5gBrAF2AWv13/p7DAYDPwKFQPsBOJIegtd06E+B0UAtMAb4TP0v0kOwQwc2zngcp/7f6CEoqGUd86gCetMDLjIMGA9cD0wG5gALgNXAn5rTBnwMXN7VBx4AjASuAKYA86UXaS5SqrWpRf9vyPvwg4CngV9KHGRZwvqP9OItwHLgZWAmcDswEWgE6jTXjMTdovd9npcYCmxzh90hUTCReBK4Q+JyRI571rj9qvMi+pYILtal9gUudP4nN+wUUROvroZZrQnAZu05pSv8Q30ZNJozKHzUlkrEcsObImzKeShwGDAWuBGYDrwKfA78DqwIrO+V8QIbgal5X8IwRIdMe5A4DlT/bioAQ4A3gD8UapjfeAmYBlynmCrpIr3V/1esf7xEzqLkTaJ3IhWAQsJFDlG/GY0IptDtAW4a50+mQi9S58aMm60SM/t/j0TPQvxn1PcOFXqRauBr4G9gq4up1sgQRDhc/VvoRgzPEOFG4maciPuQKN56VrFcPfsIfWSW9+gQZobLwQcxndkDLAIui3EvV1i48o02NLF5WAFfuTBlvx9YCex1l1ot/5UrTpfi2gZfdWEMNlBB6Qbt1Z5n2DLBKezzwEEp1tQqBT6mk1yrAR50ImyVmbIwDvhHxCw8KQVT4E8C/iIUyqTBBXKsHcCVnaTBUS4qfSLlmgPcK/r2XWcPAVwjGpsU+2VCLymfEVgSSHYG6uXNwsSxXutMr77V77sCnGtWwPiKrFSxIsTbonNv1otc7SLThoAJ/sK9tjk2j4Xq/9CFKlFaG2FkgGtmTCYH/I3hTM1ZleUSVcq1beHNgfG5sQOcFRufGRufFaAxQ2NzZZV8MWNBIKSvUvptutIv7UVOE8GfJfMeY2QSTQ/e1bw7E7hpbbuqMB724j+JztGu/xTpkq27L6GgUVBVMxUeKfKS72vsceAS/X49NudYd5FJARo3aSykX6OdM4xjscbMkqbCci2wgoBHo/pbxd4Gsbo1INeLVCqKc7S/uGHrRgX2rtUelrMkpc9jsxYf4ko8Xf1WLYwQKf25KS1hZAjMUoVwqsZNR+M6sl1jZjFLop+LpZLKRJe6vmnqm12CrnFmnuauD1ixCPOcEfCIMlL7jJEKx2vBr4GxZRq7SP8Hu+SoWIWwr5PvbRLREEzU9qpZzdhjVkbH/F/mFulBHFM1tllfpjqcUr9XhGazs4JDi+xr4wWZb48Bqh0UZNlSoY/MYruSIY+6mCPcLa8/sUTusFXzkzgxzEW7K3UGj0c1ZuY+E1oSHF0k68PV0n7XiOz/qIDIPaCgsCCn2D825yQXNIasXFHMSVC4zmKp6J0HXAU0qQgYpQbWngtwogb4UuOWCmfGCL2AWa4TyrzEICff8ai4Qz7rnBIWbENnot4IL4jI2pRfZ+sUqqxTBjlOB1znDt4uE96kMKbYIzU5x5hZpDzqdaCCXtTM3/n60FkvZ3kGcKsOtysQzcabVUlKoRp4zHHwYnJAgytol2pt+lxtHv4WKbhZuNucLhxcYj8zswsdvWvJGSP0SiuUn7TK5pt8P5WiHrVKh7OcggRLOMmFIFsSLGa34yGnb40uFDpbIrvRcXaJChYViVpdophotigtqHg0yJxGXn6nfMRs6VWXVRX3g27Cv2b2CFoHEoD+AAAAAElFTkSuQmCC">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                        {% if user.is_authenticated %}
+                            <li class="dropdown-item">{{ user.username }}</li>
+                            <li><a class="dropdown-item" href="/users/logout">Logout</a></li>
+                        {% else %}
+                            <li><a class="dropdown-item" href="/users/login">Login</a></li>
+                        {% endif %}
+                        <li><a class="dropdown-item" href="/users/signup">Register</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {% if user.is_authenticated%}
+    <div class="navbar-nav mx-5">
+        <a href="{% url 'cart:cart_detail' %}">
+            <i class="fa fa-shopping-cart" style="font-size:32px;color:black"></i>
+        </a>
+    </div>
+    {% endif %}
+</nav>
+    {% block content %}
+    {% endblock content %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

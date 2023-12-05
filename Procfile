@@ -1,0 +1,1 @@
+web gunicorn gitH.wsgi:application --log-file -

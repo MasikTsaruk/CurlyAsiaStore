@@ -1,0 +1,29 @@
+{% extends 'Vers/Base.html' %}
+{% load static %}
+{% block title %} Product Page {% endblock title %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-6 m-auto">
+                <div class="product-detail">
+                    <img src="{{ product.image.url }}">
+                    <h1>{{ product.name }}</h1>
+                    <h3>
+                        <a href="/{{ product.category.slug }}" style="text-decoration: none;">
+                            {{ product.category }}
+                        </a>
+                    </h3>
+                    <p class="price">${{ product.price }}</p>
+                    <form method="post" action="{% url 'cart:cart_add' product.id %}" >
+                        {{ add_form }}
+                        {% csrf_token %}
+                        <button class="btn btn-primary" type="submit">Send</button>
+                    </form>
+                    <p>
+                        {{ product.description|linebreaks }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

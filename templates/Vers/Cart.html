@@ -1,0 +1,56 @@
+{% extends 'Vers/Base.html' %}
+{% block title %} Your Cart {% endblock title %}
+{% block content %}
+    {% if cart %}
+        <div class="container">
+            <div class="row">
+                <div class="col-6 m-auto">
+                    <h1>Your shopping cart</h1>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Remove</th>
+                            <th scope="col">Unit price</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in cart %}
+                            {% with product=item.product %}
+                                <tr>
+                                    <td>
+                                        <img src="{{ product.image.url }}" style="height: 30px; width: 30px">
+                                    </td>
+                                    <td>{{ product.name }}</td>
+                                    <td>{{ item.quantity }}</td>
+                                    <td><a href="{% url "cart:cart_remove" product.id %}"
+                                           class="btn btn-outline-danger">Remove</a></td>
+                                    <td class="num">${{ item.price }}</td>
+                                    <td class="num">${{ item.total_price }}</td>
+                                </tr>
+                            {% endwith %}
+                        {% endfor %}
+                        <br>
+                        <tr class="total">
+                            <td>Total</td>
+                            <td colspan="4"></td>
+                            <td class="num">${{ cart.get_total_price }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p class="text-right">
+                        <a href="{% url "shop:index" %}" class="btn btn-outline-secondary">Continue shopping</a>
+                        <a href="{% url "orders:order_create" %}" class="btn btn-outline-primary">Checkout</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+        Your cart is empty
+    {% endif %}
+{% endblock %}
+
